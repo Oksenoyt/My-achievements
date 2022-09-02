@@ -7,11 +7,9 @@
 
 import Foundation
 
-struct JasonData: Decodable {
-    let data: [Country]
-}
-
 struct Country: Decodable {
-    let country: String
-//    let visited: Bool
+    let name: String
+    let capital: String?
+    let region: String
+    let nativeName: String
 }

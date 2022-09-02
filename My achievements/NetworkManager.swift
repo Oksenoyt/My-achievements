@@ -13,8 +13,8 @@ class NetworkManager {
     
     private init () {}
     
-    func fetchData(from url: String, completion: @escaping (Result<JasonData, AFError>) -> Void) {
-        AF.request(url).validate().responseDecodable(of: JasonData.self) { response in
+    func fetchData(from url: String, completion: @escaping (Result<[Country], AFError>) -> Void) {
+        AF.request(url).validate().responseDecodable(of: [Country].self) { response in
             switch response.result {
             case .success(let value):
                 completion(.success(value))

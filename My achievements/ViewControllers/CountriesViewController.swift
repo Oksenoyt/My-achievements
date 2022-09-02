@@ -8,9 +8,14 @@
 import UIKit
 
 class CountriesViewController: UITableViewController {
+//    другая апи
+//    private let link = "https://countriesnow.space/api/v0.1/countries"
+//    private let link = "https://documenter.getpostman.com/view/1134062/T1LJjU52#aba28957-5149-46e1-8a68-8021a6f5f30c"
+    
     private let link = "https://restcountries.com/v2/all"
     
     private var countries: [Country] = []
+    private var regions: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +24,20 @@ class CountriesViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        getRegion(from: countries)
+        print("regions.count",regions.count)
+        return regions.count
+//        3
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sdfd = regions[section]
+        print("section name", sdfd)
+        return sdfd
+//        "qweqwe"
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         countries.count
     }
@@ -29,8 +48,11 @@ class CountriesViewController: UITableViewController {
             return UITableViewCell()
         }
         
+        let region1 = regions[indexPath.section]
         let country = countries[indexPath.row]
-        cell.configure(with: country)
+        if country.region.contains(region1){
+            cell.configure(with: country)
+        }
         
         return cell
     }
@@ -81,17 +103,29 @@ class CountriesViewController: UITableViewController {
      */
     
     // MARK: - Private methods
-    
+    private func getRegion(from countries: [Country]) {
+        for country in countries {
+            let region = country.region
+            if !regions.contains(region) {
+                regions.append(region)
+            }
+        }
+        print(regions)
+    }
     
     private func fetchData(from url: String) {
         NetworkManager.shared.fetchData(from: url) { [weak self] result in
             switch result {
             case .success(let value):
-                self?.countries = value.data
+                self?.countries = value
                 self?.tableView.reloadData()
+//                self?.getRegion(from: self?.countries ?? [])
             case .failure(let error):
                 print(error)
             }
         }
+
     }
+    
+    
 }
