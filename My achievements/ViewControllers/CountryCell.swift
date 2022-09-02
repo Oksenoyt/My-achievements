@@ -30,7 +30,8 @@ class CountryCell: UITableViewCell {
     
     func configure(with country: Country) {
 //        flagImage.image = UIImage(data: country.flag)
-        nameLabel.text = country.name
+        nameLabel.text = country.country
         descriptionLabel.text = "qweqwe"
+        layer.cornerRadius = 5
     }
 }

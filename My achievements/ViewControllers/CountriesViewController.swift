@@ -6,23 +6,21 @@
 //
 
 import UIKit
-import Alamofire
 
 class CountriesViewController: UITableViewController {
     private let link = "https://restcountries.com/v2/all"
     
-    private var countriesDataDD: [Country] = []
+    private var countries: [Country] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 300
-        
-        fetchData()
+        tableView.rowHeight = 70
+        fetchData(from: link)
     }
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        countriesDataDD.count
+        countries.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -30,7 +28,8 @@ class CountriesViewController: UITableViewController {
         else {
             return UITableViewCell()
         }
-        let country = countriesDataDD[indexPath.row]
+        
+        let country = countries[indexPath.row]
         cell.configure(with: country)
         
         return cell
@@ -80,30 +79,19 @@ class CountriesViewController: UITableViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    private func fetchData() {
-        AF.request(link)
-            .validate()
-            .responseJSON { [weak self] dataResponse in
-                switch dataResponse.result {
-                case .success(let value):
-                    guard let countriesData = value as? [[String: Any]] else { return }
-                    for countryData in countriesData {
-                        let country = Country(
-                            name: countryData["name"] as? String ?? "no name",
-                            capital: countryData["capital"] as? String ?? "no capital",
-                            region: countryData["region"] as? String ?? "no region",
-                            subregion: countryData["subregion"] as? String ?? "no subregion",
-                            flag: countryData["flag"] as? String ?? "no flag",
-                            population: countryData["population"] as? Int ?? 0
-                        )
-                        self?.countriesDataDD.append(country)
-                    }
-                    print("massive", self?.countriesDataDD)
-                    self?.tableView.reloadData()
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
     
+    // MARK: - Private methods
+    
+    
+    private func fetchData(from url: String) {
+        NetworkManager.shared.fetchData(from: url) { [weak self] result in
+            switch result {
+            case .success(let value):
+                self?.countries = value.data
+                self?.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
