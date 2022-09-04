@@ -9,7 +9,7 @@ import Foundation
 
 struct Country: Decodable {
     let name: String
-    let capital: String?
+    let alpha2Code: String
     let region: String
     let nativeName: String
 }

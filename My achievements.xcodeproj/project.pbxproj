@@ -18,6 +18,7 @@
 		426ADC6128ABCCF50076F05C /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426ADC6028ABCCF50076F05C /* CountriesViewController.swift */; };
 		426ADC6328ABCD3B0076F05C /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426ADC6228ABCD3B0076F05C /* CountryCell.swift */; };
 		426ADC6628ABCEE80076F05C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 426ADC6528ABCEE80076F05C /* Alamofire */; };
+		42DE3B7328C4BCEE001D8A26 /* ImageCashManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DE3B7228C4BCEE001D8A26 /* ImageCashManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		426ADC5428ABC8E70076F05C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		426ADC6028ABCCF50076F05C /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		426ADC6228ABCD3B0076F05C /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
+		42DE3B7228C4BCEE001D8A26 /* ImageCashManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCashManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		426ADC4528ABC8E50076F05C /* My achievements */ = {
 			isa = PBXGroup;
 			children = (
+				42DE3B7128C4BCC6001D8A26 /* Services */,
 				426ADC5F28ABCC9B0076F05C /* Models */,
 				426ADC5C28ABC9BC0076F05C /* App */,
 				426ADC5B28ABC9860076F05C /* ViewControllers */,
@@ -111,6 +114,14 @@
 				4246AD0A28C0C2A4007FB094 /* Country.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		42DE3B7128C4BCC6001D8A26 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				42DE3B7228C4BCEE001D8A26 /* ImageCashManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +207,7 @@
 				4246AD0D28C0C58E007FB094 /* NetworkManager.swift in Sources */,
 				426ADC4728ABC8E50076F05C /* AppDelegate.swift in Sources */,
 				426ADC6128ABCCF50076F05C /* CountriesViewController.swift in Sources */,
+				42DE3B7328C4BCEE001D8A26 /* ImageCashManager.swift in Sources */,
 				426ADC4928ABC8E50076F05C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

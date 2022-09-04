@@ -34,16 +34,16 @@
                                             </connections>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9TE-ED-epv">
-                                            <rect key="frame" x="119" y="14" width="240" height="51"/>
+                                            <rect key="frame" x="116.5" y="14" width="242.5" height="51"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPN-gv-czs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="25.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="242.5" height="25.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQq-t8-g4J">
-                                                    <rect key="frame" x="0.0" y="30.5" width="240" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="30.5" width="242.5" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20.5" id="J47-C7-Rlb"/>
                                                     </constraints>
@@ -53,11 +53,11 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kGC-HK-ofE">
-                                            <rect key="frame" x="20" y="11" width="91" height="57"/>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kGC-HK-ofE">
+                                            <rect key="frame" x="20" y="11" width="88.5" height="57"/>
+                                            <color key="backgroundColor" red="0.41176470588235292" green="0.40392156862745099" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="kGC-HK-ofE" secondAttribute="height" multiplier="1.6:1" id="Pri-D2-bpS"/>
+                                                <constraint firstAttribute="width" secondItem="kGC-HK-ofE" secondAttribute="height" multiplier="1.55:1" id="Pri-D2-bpS"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
