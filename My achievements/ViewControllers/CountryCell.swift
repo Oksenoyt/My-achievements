@@ -21,7 +21,6 @@ class CountryCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 
@@ -29,9 +28,16 @@ class CountryCell: UITableViewCell {
     }
     
     func configure(with country: Country) {
-//        flagImage.image = UIImage(data: country.flag)
         nameLabel.text = country.name
         descriptionLabel.text = country.nativeName
-        layer.cornerRadius = 5
+        let url = "https://countryflagsapi.com/png/\(country.name)"
+        NetworkManager.shared.fetchImg(from: url) { [weak self] result in
+            switch result {
+            case .success(let value):
+                self?.flagImage.image = UIImage(data: value)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

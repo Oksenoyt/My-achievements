@@ -23,4 +23,15 @@ class NetworkManager {
             }
         }
     }
+    
+    func fetchImg(from url: String, completion: @escaping(Result<Data, AFError>) -> Void) {
+        AF.request(url).validate().responseData { dataRequest in
+            switch dataRequest.result {
+            case .success(let value):
+                completion(.success(value))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

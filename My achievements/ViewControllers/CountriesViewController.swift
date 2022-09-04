@@ -8,9 +8,9 @@
 import UIKit
 
 class CountriesViewController: UITableViewController {
-//    другая апи
-//    private let link = "https://countriesnow.space/api/v0.1/countries"
-//    private let link = "https://documenter.getpostman.com/view/1134062/T1LJjU52#aba28957-5149-46e1-8a68-8021a6f5f30c"
+    //    другая апи
+    //    private let link = "https://countriesnow.space/api/v0.1/countries"
+    //    private let link = "https://documenter.getpostman.com/view/1134062/T1LJjU52#aba28957-5149-46e1-8a68-8021a6f5f30c"
     
     private let link = "https://restcountries.com/v2/all"
     
@@ -26,37 +26,31 @@ class CountriesViewController: UITableViewController {
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         getRegion(from: countries)
-        print("regions.count",regions.count)
         return regions.count
-//        3
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sdfd = regions[section]
-        print("section name", sdfd)
-        return sdfd
-//        "qweqwe"
+        regions[section]
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        countries.count
+        filterCountries(by: regions[section]).count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let country = filterCountries(by: regions[indexPath.section])[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath) as? CountryCell
         else {
             return UITableViewCell()
         }
         
-        let region1 = regions[indexPath.section]
-        let country = countries[indexPath.row]
-        if country.region.contains(region1){
-            cell.configure(with: country)
-        }
-        
+        cell.configure(with: country)
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -110,7 +104,10 @@ class CountriesViewController: UITableViewController {
                 regions.append(region)
             }
         }
-        print(regions)
+    }
+    
+    private func filterCountries(by region: String) -> [Country] {
+        countries.filter({ country in country.region.contains(region) })
     }
     
     private func fetchData(from url: String) {
@@ -119,13 +116,9 @@ class CountriesViewController: UITableViewController {
             case .success(let value):
                 self?.countries = value
                 self?.tableView.reloadData()
-//                self?.getRegion(from: self?.countries ?? [])
             case .failure(let error):
                 print(error)
             }
         }
-
     }
-    
-    
 }
