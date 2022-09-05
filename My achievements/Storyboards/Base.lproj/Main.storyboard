@@ -22,13 +22,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xC1-d1-phv">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xC1-d1-phv">
                                             <rect key="frame" x="362" y="24" width="36" height="31"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="36" id="U0y-Jq-6bt"/>
                                             </constraints>
+                                            <color key="tintColor" red="0.19607843137254902" green="0.16078431372549018" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" title="✓"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="✔︎">
+                                                <backgroundConfiguration key="background">
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </backgroundConfiguration>
+                                            </buttonConfiguration>
                                             <connections>
                                                 <action selector="checkButton:" destination="GtH-bA-x2f" eventType="touchUpInside" id="OnP-MG-7Y1"/>
                                             </connections>
@@ -60,14 +65,31 @@
                                                 <constraint firstAttribute="width" secondItem="kGC-HK-ofE" secondAttribute="height" multiplier="1.55:1" id="Pri-D2-bpS"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6b-Im-Pb7">
+                                            <rect key="frame" x="362" y="24" width="36" height="31"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="" cornerStyle="large">
+                                                <backgroundConfiguration key="background" strokeWidth="2" strokeOutset="0.0">
+                                                    <color key="strokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </backgroundConfiguration>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="checkButton:" destination="GtH-bA-x2f" eventType="touchUpInside" id="VHR-bL-jJO"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="xC1-d1-phv" firstAttribute="centerY" secondItem="7tN-l6-Jpc" secondAttribute="centerY" id="2dx-yt-0g4"/>
+                                        <constraint firstItem="x6b-Im-Pb7" firstAttribute="centerY" secondItem="7tN-l6-Jpc" secondAttribute="centerY" id="4bZ-R1-R89"/>
+                                        <constraint firstAttribute="trailing" secondItem="x6b-Im-Pb7" secondAttribute="trailing" constant="16" id="9cY-0p-CWf"/>
+                                        <constraint firstItem="x6b-Im-Pb7" firstAttribute="leading" secondItem="9TE-ED-epv" secondAttribute="trailing" constant="3" id="AI6-rl-axd"/>
                                         <constraint firstAttribute="trailing" secondItem="xC1-d1-phv" secondAttribute="trailing" constant="16" id="FF7-aE-LH9"/>
+                                        <constraint firstItem="x6b-Im-Pb7" firstAttribute="height" secondItem="xC1-d1-phv" secondAttribute="height" id="MpO-4q-bvE"/>
                                         <constraint firstItem="xC1-d1-phv" firstAttribute="leading" secondItem="9TE-ED-epv" secondAttribute="trailing" constant="3" id="NND-hE-u6O"/>
                                         <constraint firstItem="kGC-HK-ofE" firstAttribute="top" secondItem="7tN-l6-Jpc" secondAttribute="topMargin" id="VaZ-2k-AMa"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="9TE-ED-epv" secondAttribute="bottom" constant="3" id="c9w-N2-2Tm"/>
                                         <constraint firstItem="9TE-ED-epv" firstAttribute="top" secondItem="7tN-l6-Jpc" secondAttribute="topMargin" constant="3" id="gSg-Kv-Del"/>
+                                        <constraint firstItem="x6b-Im-Pb7" firstAttribute="width" secondItem="xC1-d1-phv" secondAttribute="width" id="i7X-6K-1QU"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="kGC-HK-ofE" secondAttribute="bottom" id="rIa-xy-pQE"/>
                                         <constraint firstItem="9TE-ED-epv" firstAttribute="leading" secondItem="kGC-HK-ofE" secondAttribute="trailing" constant="8" id="s7b-Tt-CPL"/>
                                         <constraint firstItem="kGC-HK-ofE" firstAttribute="leading" secondItem="7tN-l6-Jpc" secondAttribute="leadingMargin" id="xW7-Rj-1JW"/>
@@ -75,6 +97,8 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.41176470588235292" green="0.40392156862745099" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <outlet property="checkButton" destination="xC1-d1-phv" id="ASx-vn-GTW"/>
+                                    <outlet property="checkEmptyButton" destination="x6b-Im-Pb7" id="pMd-gh-BeR"/>
                                     <outlet property="descriptionLabel" destination="PQq-t8-g4J" id="j96-xY-NgT"/>
                                     <outlet property="flagImage" destination="kGC-HK-ofE" id="gOT-ov-2Qr"/>
                                     <outlet property="nameLabel" destination="sPN-gv-czs" id="qeS-H3-tuV"/>

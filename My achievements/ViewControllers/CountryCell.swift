@@ -12,7 +12,12 @@ class CountryCell: UITableViewCell {
     @IBOutlet weak var flagImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var checkButton: UIButton!
+    @IBOutlet weak var checkEmptyButton: UIButton!
+    
     @IBOutlet var activityIndicator: UIActivityIndicatorView?
+    
+    private var visited = false
     
     private var imageURL: URL? {
         didSet {
@@ -32,12 +37,28 @@ class CountryCell: UITableViewCell {
     }
     
     @IBAction func checkButton(_ sender: Any) {
+        if visited {
+            checkButton.isHidden = true
+            checkEmptyButton.isHidden = false
+            StorageManager.shared.update(<#T##country: CountryData##CountryData#>, visitedChange: <#T##Bool#>)
+        } else {
+            checkButton.isHidden = false
+            checkEmptyButton.isHidden = true
+        }
+        visited.toggle()
     }
     
     func configure(with country: Country) {
         nameLabel.text = country.name
         descriptionLabel.text = country.nativeName
         imageURL = URL(string: "https://countryflagsapi.com/png/\(country.alpha2Code)")
+        
+    }
+    
+    private func createDateVisited(currentCountry: String) {
+        StorageManager.shared.create(country: currentCountry, currentVisited: false) { <#CountryData#> in
+            <#code#>
+        }
     }
     
     private func updateImg() {

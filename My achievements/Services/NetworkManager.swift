@@ -34,9 +34,7 @@ class NetworkManager {
         AF.request(url).validate().responseData { dataRequest in
             switch dataRequest.result {
             case .success(let imageData):
-                guard let uiImage = UIImage(data: imageData) else {
-                    print("нет картинки")
-                    return }
+                guard let uiImage = UIImage(data: imageData) else { return }
                 completion(.success(uiImage))
                 ImageCacheManager.shared.setObject(uiImage, forKey: url.lastPathComponent as NSString)
             case .failure(let error):
