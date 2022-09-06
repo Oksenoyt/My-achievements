@@ -18,6 +18,7 @@ class CountryCell: UITableViewCell {
     @IBOutlet var activityIndicator: UIActivityIndicatorView?
     
     private var visited = false
+    private var currentCountry = ""
     
     private var imageURL: URL? {
         didSet {
@@ -40,34 +41,42 @@ class CountryCell: UITableViewCell {
         if visited {
             checkButton.isHidden = true
             checkEmptyButton.isHidden = false
-            StorageManager.shared.update(<#T##country: CountryData##CountryData#>, visitedChange: <#T##Bool#>)
         } else {
             checkButton.isHidden = false
             checkEmptyButton.isHidden = true
         }
         visited.toggle()
+        StorageManager.shared.update(country: currentCountry, visitedChange: visited)
     }
     
     func configure(with country: Country) {
         nameLabel.text = country.name
         descriptionLabel.text = country.nativeName
         imageURL = URL(string: "https://countryflagsapi.com/png/\(country.alpha2Code)")
+        StorageManager.shared.create(country: country.name)
         
-    }
-    
-    private func createDateVisited(currentCountry: String) {
-        StorageManager.shared.create(country: currentCountry, currentVisited: false) { <#CountryData#> in
-            <#code#>
-        }
+        fetchDataFromBD(country: country.name)
+        currentCountry = country.name
     }
     
     private func updateImg() {
-        guard let url = imageURL else { return }
+        guard let url = imageURL else { return  }
         NetworkManager.shared.fetchImg(from: url) { [weak self] result in
             switch result {
             case .success(let value):
                 self?.flagImage.image = value
                 self?.activityIndicator?.stopAnimating()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func fetchDataFromBD(country: String) {
+        StorageManager.shared.fetchData(currentCountry: country) { result in
+            switch result {
+            case .success(let value):
+                visited = value.last?.visitedData ?? false
             case .failure(let error):
                 print(error)
             }

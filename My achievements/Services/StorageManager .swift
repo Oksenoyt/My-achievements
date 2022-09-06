@@ -29,26 +29,32 @@ class StorageManager {
     }
     
     // MARK: - CRUD
-    func create(country: String, currentVisited: Bool, completion: (CountryData) -> Void) {
+    func create(country: String) {
         let countryData = CountryData(context: viewContext)
         countryData.nameData = country
-        countryData.visitedData = currentVisited
-        completion(countryData)
+        countryData.visitedData = false
         saveContext()
     }
     
-    func fetchData(completion: (Result<[CountryData], Error>) -> Void) {
+    func fetchData(currentCountry: String, completion: (Result<[CountryData], Error>) -> Void) {
         let fetchRequest = CountryData.fetchRequest()
         do {
-            let countries = try viewContext.fetch(fetchRequest)
-            completion(.success(countries))
+            fetchRequest.predicate = NSPredicate(
+//                format: "name LIKE %@", "Robert"
+                format: "nameData CONTAINS %@", currentCountry
+            )
+            let country = try viewContext.fetch(fetchRequest)
+            print(country)
+            completion(.success(country))
         } catch let error {
             completion(.failure(error))
         }
     }
     
-    func update(_ country: CountryData, visitedChange: Bool) {
-        country.visitedData = visitedChange
+    func update(country: String, visitedChange: Bool) {
+        print(country, visitedChange)
+        CountryData.d
+//        CountryData.setValue(visitedChange, forKey: country)
         saveContext()
     }
     
