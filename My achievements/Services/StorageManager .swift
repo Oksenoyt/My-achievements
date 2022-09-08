@@ -32,7 +32,7 @@ class StorageManager {
     func create(country: String) {
         let countryData = CountryData(context: viewContext)
         countryData.nameData = country
-        countryData.visitedData = false
+//        countryData.visitedData = false
         saveContext()
     }
     
@@ -53,7 +53,7 @@ class StorageManager {
     
     func update(country: String, visitedChange: Bool) {
         print(country, visitedChange)
-        CountryData.d
+//        CountryData.d
 //        CountryData.setValue(visitedChange, forKey: country)
         saveContext()
     }

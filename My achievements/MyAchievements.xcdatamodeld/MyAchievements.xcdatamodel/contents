@@ -2,9 +2,14 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CountryData" representedClassName="CountryData" syncable="YES" codeGenerationType="class">
         <attribute name="nameData" attributeType="String"/>
-        <attribute name="visitedData" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="visited" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="VisitedData" inverseName="countryData" inverseEntity="VisitedData"/>
+    </entity>
+    <entity name="VisitedData" representedClassName="VisitedData" syncable="YES" codeGenerationType="class">
+        <attribute name="visited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="countryData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CountryData" inverseName="visited" inverseEntity="CountryData"/>
     </entity>
     <elements>
         <element name="CountryData" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="VisitedData" positionX="-63" positionY="-9" width="128" height="59"/>
     </elements>
 </model>

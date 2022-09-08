@@ -73,14 +73,14 @@ class CountryCell: UITableViewCell {
     }
     
     private func fetchDataFromBD(country: String) {
-        StorageManager.shared.fetchData(currentCountry: country) { result in
-            switch result {
-            case .success(let value):
-                visited = value.last?.visitedData ?? false
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        StorageManager.shared.fetchData(currentCountry: country) { result in
+//            switch result {
+//            case .success(let value):
+//                visited = value.last?.visitedData ?? false
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
     
     private func showSpinner(in view: UIView) -> UIActivityIndicatorView {
